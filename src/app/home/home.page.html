@@ -1,18 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
 
-<ion-content [fullscreen]="true">
-  <div id="container">
-    <img alt="Photo" [src]="photo">
-  </div>
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="takePicture()">
-      <ion-icon name="camera"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <h1>Gestión de Incidencias</h1>
+
+  <p>
+    Esta aplicación permite reportar incidencias capturando una imagen
+    junto con la geolocalización del dispositivo.
+  </p>
+
+  <ion-button expand="block" routerLink="/nueva-incidencia">
+    Nueva incidencia
+  </ion-button>
+
+  <ion-button expand="block" color="secondary" routerLink="/listado-incidencias">
+    Ver incidencias
+  </ion-button>
+
 </ion-content>

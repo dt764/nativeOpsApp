@@ -1,13 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>nueva-incidencia</ion-title>
+    <ion-title>Nueva incidencia<</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">nueva-incidencia</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  
+  @if (!photo) {
+    <div>
+      <img src="assets/no-image.png" alt="Sin imagen" />
+      <p>No se ha tomado ninguna foto</p>
+    </div>
+  }
+
+  @if (photo) {
+    <div>
+      <img [src]="photo" style="max-width: 100%;" />
+
+      <p><strong>Latitud:</strong> {{ latitude }}</p>
+      <p><strong>Longitud:</strong> {{ longitude }}</p>
+    </div>
+  }
+  
+  <ion-button expand="block" (click)="takePicture()">
+    Tomar foto
+  </ion-button>
+
+  <ion-button expand="block" color="success" (click)="save()">
+    Guardar incidencia
+  </ion-button>
+
 </ion-content>

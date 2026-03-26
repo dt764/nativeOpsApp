@@ -1,20 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component, inject, OnInit } from '@angular/core';
+import { IncidenciasService } from '../../services/incidencias.service';
+import {
+  IonHeader, IonToolbar, IonContent, IonTitle, 
+  IonList, IonItem, IonLabel, IonThumbnail
+} from '@ionic/angular/standalone';
+
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-listado-incidencias',
+
+  selector: 'app-listado',
   templateUrl: './listado-incidencias.page.html',
-  styleUrls: ['./listado-incidencias.page.scss'],
+  styleUrl : './listado-incidencias.page.scss',
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, DatePipe, IonThumbnail]
 })
 export class ListadoIncidenciasPage implements OnInit {
 
-  constructor() { }
+  private service = inject(IncidenciasService);
 
-  ngOnInit() {
+  incidencias = this.service.incidencias;
+
+  async ngOnInit() {
+  if (this.service.incidencias().length === 0) {
+    await this.service.load();
   }
-
+}
 }

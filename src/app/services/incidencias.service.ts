@@ -9,16 +9,12 @@ const KEY = 'incidencias';
 })
 export class IncidenciasService {
 
-  // 📦 estado global (SSOT)
   private _incidencias = signal<Incidencia[]>([]);
-
-  // 👀 readonly para componentes
   incidencias = this._incidencias.asReadonly();
 
-  // 📊 computed opcional (ej: contador)
   total = computed(() => this._incidencias().length);
 
-  // 🚀 inicializar desde storage
+  // Inicializar desde storage
   async load(): Promise<void> {
     const { value } = await Preferences.get({ key: KEY });
 
@@ -29,7 +25,6 @@ export class IncidenciasService {
     }
   }
 
-  // 💾 añadir incidencia
   async add(incidencia: Incidencia): Promise<void> {
     const updated = [...this._incidencias(), incidencia];
 
@@ -38,7 +33,6 @@ export class IncidenciasService {
     await this.saveToStorage(updated);
   }
 
-  // 🧠 guardar sincronizado
   private async saveToStorage(data: Incidencia[]): Promise<void> {
     await Preferences.set({
       key: KEY,
@@ -46,7 +40,6 @@ export class IncidenciasService {
     });
   }
 
-  // 🧹 limpiar todo
   async clear(): Promise<void> {
     this._incidencias.set([]);
     await Preferences.remove({ key: KEY });
