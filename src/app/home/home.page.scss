@@ -1,0 +1,84 @@
+ion-content {
+    --background: var(--ion-color-light-shade);
+}
+
+ion-card {
+    background: var(--ion-color-light);
+}
+
+/* Centrado del contenido del ion-content */
+.mi-pagina-scroll::part(scroll) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: 16px;
+}
+
+/* Wrapper centrado */
+.page-center {
+  width: 100%;
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card principal con mayor tamaño */
+.card-main {
+  text-align: center;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  background-color: var(--ion-color-light);
+  padding: 32px;
+
+  width: 100%;
+  max-width: 850px; /* card más ancho para pantallas grandes */
+  min-width: 300px;
+  box-sizing: border-box;
+}
+
+/* Título más grande y responsive */
+.card-main h1 {
+  font-size: clamp(2rem, 6vw, 2.8rem); /* escala según pantalla */
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--ion-color-dark);
+}
+
+/* Párrafo más grande y responsive */
+.card-main p {
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  color: var(--ion-color-medium);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+/* Botón principal */
+.btn-primary {
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+  --border-radius: 14px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  --padding-start: 0;   /* opcional, para botones expand=block */
+  --padding-end: 0;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+/* Botón secundario */
+.btn-secondary {
+  --background: var(--ion-color-secondary);
+  --color: var(--ion-color-secondary-contrast);
+  --border-radius: 14px;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  --padding-start: 0;   /* opcional, para botones expand=block */
+  --padding-end: 0;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* separación entre botones, ajustable */
+}

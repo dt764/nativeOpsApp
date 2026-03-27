@@ -4,24 +4,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
 
   @if (incidencias().length === 0) {
-  <p>No hay incidencias guardadas</p>
+   <p class="no-incidencias">
+    No hay incidencias guardadas
+  </p>
   }
 
   @if (incidencias().length > 0) {
 
-  <ion-list>
+  <ion-list class="incidencias-list">
     @for (i of incidencias(); track i.id) {
-    <ion-item>
+    <ion-item class="incidencia-item">
 
-      <ion-thumbnail slot="start">
+      <ion-thumbnail slot="start" class="incidencia-thumb">
         <img [src]="i.photo" />
       </ion-thumbnail>
 
-      <ion-label>
-        <h2>{{ i.createdAt | date:'short' }}</h2>
+      <ion-label class="incidencia-label">
+        <h2 class="titulo-incidencia">{{ i.createdAt | date:'short' }}</h2>
         <p>Lat: {{ i.latitude }}</p>
         <p>Lng: {{ i.longitude }}</p>
       </ion-label>
