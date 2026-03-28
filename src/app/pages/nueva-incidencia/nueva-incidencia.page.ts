@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { IonContent, IonButton, IonHeader, IonToolbar, IonTitle } from '@ionic/angular/standalone';
+import { IonContent, IonButton, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton, IonCard } from '@ionic/angular/standalone';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 import { IncidenciasService } from '../../services/incidencias.service';
 import { ToastController } from '@ionic/angular/standalone';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-nueva-incidencia',
   templateUrl: './nueva-incidencia.page.html',
+  styleUrl: './nueva-incidencia.page.scss',
   standalone: true,
-  imports: [IonContent, IonButton, IonHeader, IonToolbar, IonTitle],
+  imports: [IonContent, IonButton, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton, IonCard],
 })
 export class NuevaIncidenciaPage {
 
@@ -19,6 +21,7 @@ export class NuevaIncidenciaPage {
   photo?: string;
   latitude?: number;
   longitude?: number;
+  router = inject(Router);
 
   // 📷 Tomar foto + geolocalización
   async takePicture() {
@@ -30,12 +33,12 @@ export class NuevaIncidenciaPage {
 
       if (image.webPath) {
         this.photo = image.webPath;
+      }
 
-        const position = await Geolocation.getCurrentPosition();
+      const position = await Geolocation.getCurrentPosition();
 
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-      }
 
     } catch (error) {
       console.error('Error:', error);
@@ -46,7 +49,7 @@ export class NuevaIncidenciaPage {
   // 💾 Guardar incidencia
   async save() {
     if (!this.photo || !this.latitude || !this.longitude) {
-      this.showToast('Faltan datos', 'warning');
+      this.showToast('Tome o elija una foto y obtenga la ubicación', 'warning');
       return;
     }
 
@@ -64,6 +67,8 @@ export class NuevaIncidenciaPage {
     this.photo = undefined;
     this.latitude = undefined;
     this.longitude = undefined;
+
+    this.router.navigate(['/listado-incidencias']);
   }
 
   // 🔔 Función genérica para mostrar Toast

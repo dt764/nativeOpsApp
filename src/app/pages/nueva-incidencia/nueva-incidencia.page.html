@@ -1,33 +1,42 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Nueva incidencia<</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button class="boton" defaultHref="/home" text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nueva incidencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  
-  @if (!photo) {
-    <div>
-      <img src="assets/no-image.png" alt="Sin imagen" />
-      <p>No se ha tomado ninguna foto</p>
-    </div>
-  }
 
-  @if (photo) {
-    <div>
-      <img [src]="photo" style="max-width: 100%;" />
+  <div class="page-center">
+    <ion-card class="ion-padding card-main">
+      @if (!photo) {
+      <div>
+        <img src="assets/no-image.jpg" alt="Sin imagen" />
+        <p>No se ha tomado ninguna foto</p>
+      </div>
+      }
 
-      <p><strong>Latitud:</strong> {{ latitude }}</p>
-      <p><strong>Longitud:</strong> {{ longitude }}</p>
-    </div>
-  }
-  
-  <ion-button expand="block" (click)="takePicture()">
-    Tomar foto
-  </ion-button>
+      @if (photo) {
+      <div>
+        <img [src]="photo" style="max-width: 100%;" />
 
-  <ion-button expand="block" color="success" (click)="save()">
-    Guardar incidencia
-  </ion-button>
+        <p><strong>Latitud:</strong> {{ latitude }}</p>
+        <p><strong>Longitud:</strong> {{ longitude }}</p>
+      </div>
+      }
+
+      <ion-button expand="block" (click)="takePicture()">
+        Tomar foto
+      </ion-button>
+
+      <ion-button expand="block" color="success" (click)="save()">
+        Guardar incidencia
+      </ion-button>
+
+    </ion-card>
+  </div>
+
 
 </ion-content>
