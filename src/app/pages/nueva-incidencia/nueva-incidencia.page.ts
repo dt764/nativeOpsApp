@@ -4,7 +4,7 @@ import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 import { IncidenciasService } from '../../services/incidencias.service';
 import { ToastController } from '@ionic/angular/standalone';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nueva-incidencia',
@@ -36,13 +36,12 @@ export class NuevaIncidenciaPage {
       }
 
       const position = await Geolocation.getCurrentPosition();
-
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
 
     } catch (error) {
-      console.error('Error:', error);
-      this.showToast('Error al tomar la foto o obtener ubicación', 'danger');
+        console.error('Error:', error);
+        this.showToast('Error al tomar la foto o obtener ubicación', 'danger');
     }
   }
 
@@ -62,12 +61,9 @@ export class NuevaIncidenciaPage {
     });
 
     this.showToast('Incidencia guardada', 'success');
-
-    // reset
     this.photo = undefined;
     this.latitude = undefined;
     this.longitude = undefined;
-
     this.router.navigate(['/listado-incidencias']);
   }
 
